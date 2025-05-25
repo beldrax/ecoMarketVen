@@ -1,0 +1,30 @@
+package com.ecomarket.ventas.model;
+
+import jakarta.persistence.*;
+import lombok.Data;
+
+@Entity
+@Data
+public class DetalleVenta {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    private Integer id;
+
+    @Column(nullable = false)
+    private Integer productoId;
+
+    @Column(nullable = false)
+    private Integer cantidad;
+
+    @Column(nullable = false)
+    private Double precioUnitario;
+
+    @Column(nullable = false)
+    private Double subtotal;
+
+    @ManyToOne
+    @JoinColumn(name = "venta_id", nullable = false)
+    private Venta venta;
+}
