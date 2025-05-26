@@ -42,4 +42,10 @@ public class VentaController {
     public List<Venta> obtenerPorCliente(@PathVariable Integer clienteId) {
         return ventaService.obtenerPorClienteID(clienteId);
     }
+
+    @GetMapping("/factura/{id}")
+    public ResponseEntity<String> generarFactura(@PathVariable Integer id) {
+        String factura = ventaService.generarFactura(id);
+        return factura != null ? ResponseEntity.ok(factura) : ResponseEntity.notFound().build();
+    }
 }

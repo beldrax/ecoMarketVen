@@ -38,4 +38,27 @@ public class VentaService {
     public List<Venta> obtenerPorClienteID(Integer clienteId) {
         return ventaRepository.findByClienteId(clienteId);
     }
+
+    public String generarFactura(Integer id) {
+        Venta venta = obtenerPorId(id);
+        if (venta == null) return null;
+        StringBuilder factura = new StringBuilder();
+        factura.append("======FACTURA ====\n");
+        factura.append("==================\n");
+        factura.append("N° Venta: ").append(venta.getId()).append("\n");
+        factura.append("Cliente ID: ").append(venta.getClienteId()).append("\n");
+        factura.append("Fecha: ").append(venta.getFecha()).append("\n\n");
+        factura.append("==================\n");
+        factura.append("Detalle:\n");
+        for (DetalleVenta detalle : venta.getDetalles()) {
+            factura.append("- Producto ID: ").append(detalle.getProductoId())
+                .append(" | Cantidad: ").append(detalle.getCantidad())
+                .append(" | Precio Unitario: ").append(detalle.getPrecioUnitario())
+                .append(" | Subtotal: ").append(detalle.getSubtotal()).append("\n");
+        }
+        factura.append("TOTAL: $").append(venta.getTotal()).append("\n");
+        factura.append("================");
+
+        return factura.toString();
+    }
 }

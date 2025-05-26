@@ -34,4 +34,5 @@ public class Venta {
     @JsonManagedReference
     private List<DetalleVenta> detalles;
 
+
 }
