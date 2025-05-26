@@ -34,5 +34,6 @@ public class Venta {
     @JsonManagedReference
     private List<DetalleVenta> detalles;
 
-
+    @Column(nullable = false)
+    private boolean devuelta = false;
 }

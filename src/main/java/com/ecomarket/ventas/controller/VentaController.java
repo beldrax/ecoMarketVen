@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,4 +49,11 @@ public class VentaController {
         String factura = ventaService.generarFactura(id);
         return factura != null ? ResponseEntity.ok(factura) : ResponseEntity.notFound().build();
     }
+
+    @PutMapping("/devolucion/{id}")
+    public ResponseEntity<String> devolverVenta(@PathVariable Integer id) {
+        boolean devuelta = ventaService.marcarComoDevuelta(id);
+        return devuelta ? ResponseEntity.ok("Venta marcada como devuelta") :
+                        ResponseEntity.notFound().build();
+}
 }

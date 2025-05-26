@@ -61,4 +61,12 @@ public class VentaService {
 
         return factura.toString();
     }
+
+    public boolean marcarComoDevuelta(Integer id) {
+        Venta venta = obtenerPorId(id);
+        if (venta == null || venta.isDevuelta()) return false;
+        venta.setDevuelta(true);
+        ventaRepository.save(venta);
+        return true;
+}
 }
