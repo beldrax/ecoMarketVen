@@ -68,5 +68,13 @@ public class VentaService {
         venta.setDevuelta(true);
         ventaRepository.save(venta);
         return true;
-}
+    }
+
+    public void eliminarVenta(Integer id) {
+        if (ventaRepository.existsById(id)) {
+            ventaRepository.deleteById(id);
+        } else {
+            throw new IllegalArgumentException("La venta con ID " + id + " no existe.");
+        }
+    }
 }
