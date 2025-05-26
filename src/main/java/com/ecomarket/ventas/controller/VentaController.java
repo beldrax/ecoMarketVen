@@ -58,7 +58,7 @@ public class VentaController {
                         ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("eliminar/{id}")
     public ResponseEntity<Void> eliminarVenta(@PathVariable Integer id) {
         try {
             ventaService.eliminarVenta(id);
