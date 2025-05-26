@@ -18,7 +18,6 @@ import com.ecomarket.ventas.service.VentaService;
 @RequestMapping("api/v1/ventas")
 public class VentaController {
 
-    
     @Autowired
     private VentaService ventaService;
 
@@ -33,13 +32,13 @@ public class VentaController {
         return ventaService.obtenerTodas();
     }
 
-    @GetMapping("api/v1/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Venta> obtenerPorId(@PathVariable Integer id) {
         Venta venta = ventaService.obtenerPorId(id);
         return venta != null ? ResponseEntity.ok(venta) : ResponseEntity.notFound().build();
     }
 
-    @GetMapping("api/v1/cliente/{clienteId}")
+    @GetMapping("/clienteId/{clienteId}")
     public List<Venta> obtenerPorCliente(@PathVariable Integer clienteId) {
         return ventaService.obtenerPorClienteID(clienteId);
     }

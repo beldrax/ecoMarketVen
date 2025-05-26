@@ -3,11 +3,15 @@ package com.ecomarket.ventas.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Data
+
 public class Venta {
 
     @Id
@@ -22,10 +26,12 @@ public class Venta {
     @Column(nullable = false)
     private Double total;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     @Column(nullable = false)
-    private LocalDateTime fecha;
+    private LocalDate fecha;
 
     @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL,orphanRemoval = true)
+    @JsonManagedReference
     private List<DetalleVenta> detalles;
 
 }
