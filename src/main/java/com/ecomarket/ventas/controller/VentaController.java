@@ -60,11 +60,7 @@ public class VentaController {
 
     @DeleteMapping("eliminar/{id}")
     public ResponseEntity<Void> eliminarVenta(@PathVariable Integer id) {
-        try {
-            ventaService.eliminarVenta(id);
-            return ResponseEntity.noContent().build();
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.notFound().build();
-        }
+        ventaService.eliminarVenta(id);
+        return ResponseEntity.noContent().build();
     }
 }
